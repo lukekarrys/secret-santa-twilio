@@ -4,14 +4,15 @@ import twilio from 'twilio';
 import {mapSeries} from 'async';
 import {pluck} from 'lodash';
 import {twilio as twilioConfig, participants} from './config.json';
-import messages from './lib/messages';
+import getMessages from './lib/messages';
 import picker from './lib/picker';
 
 const isProd = process.env.NODE_ENV === 'production';
 const twilioClient = twilio(twilioConfig.sid, twilioConfig.auth);
+const messages = getMessages({twilio: twilioConfig, participants: picker(participants)});
 
-mapSeries(
-  messages({twilio: twilioConfig, participants: picker(participants)}),
-  isProd ? twilioClient : (message, cb) => cb(null, message),
-  (err, res) => console.log(err || JSON.stringify(isProd ? pluck(res, 'sid') : res, null, 2)) // eslint-disable-line no-console
-);
+const passSuccess = (val, cb) => cb(null, val);
+const formatResults = (res) => JSON.stringify(isProd ? pluck(res, 'sid') : res, null, 2);
+const log = (err, res) => console.log(err || formatResults(res));
+
+mapSeries(messages, isProd ? twilioClient : passSuccess, log);

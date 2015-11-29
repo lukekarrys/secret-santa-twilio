@@ -1,3 +1,6 @@
 {
-  "extends": "@lukekarrys/eslint-config"
+  "extends": "@lukekarrys/eslint-config",
+  "rules": {
+    "no-console": 0
+  }
 }

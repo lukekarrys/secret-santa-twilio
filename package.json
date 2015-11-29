@@ -33,6 +33,7 @@
     "validate",
     "test"
   ],
+  "private": true,
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
     "start": "babel-node index.js",
