@@ -1,0 +1,42 @@
+{
+  "name": "twilio-secret-santa",
+  "description": "Secret Santa over SMS with Twilio.",
+  "version": "1.0.0",
+  "author": "Luke Karrys <luke@lukekarrys.com>",
+  "dependencies": {
+    "async": "^1.5.0",
+    "lodash": "^3.10.1",
+    "twilio": "^2.5.2"
+  },
+  "devDependencies": {
+    "@lukekarrys/eslint-config": "^1.0.30",
+    "babel": "^5.8.34",
+    "babel-eslint": "^4.1.6",
+    "babel-tape-runner": "1.2.0",
+    "eslint": "^1.10.2",
+    "eslint-plugin-classes": "^0.1.1",
+    "eslint-plugin-react": "^3.10.0",
+    "precommit-hook": "^3.0.0",
+    "tap-min": "^1.0.0",
+    "tape": "^4.2.2"
+  },
+  "keywords": [
+    "santa",
+    "secret",
+    "sms",
+    "twilio"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ],
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "start": "babel-node index.js",
+    "test": "babel-tape-runner test/*.js | tap-min",
+    "validate": "npm ls"
+  }
+}
