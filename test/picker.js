@@ -3,7 +3,7 @@
 import {times, each, contains, pluck, compact, uniq} from 'lodash';
 import test from 'tape';
 import picker from '../lib/picker';
-import {participants} from '../config.json';
+import {participants} from 'getconfig';
 
 const ITERATIONS = 2500;
 

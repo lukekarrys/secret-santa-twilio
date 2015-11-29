@@ -5,6 +5,7 @@
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "dependencies": {
     "async": "^1.5.0",
+    "getconfig": "^2.2.0",
     "lodash": "^3.10.1",
     "twilio": "^2.5.2"
   },
@@ -37,6 +38,7 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
     "start": "babel-node index.js",
+    "production": "babel-node index.js --for-reals",
     "test": "babel-tape-runner test/*.js | tap-min",
     "validate": "npm ls"
   }

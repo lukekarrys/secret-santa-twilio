@@ -4,7 +4,7 @@ import {each, findWhere, pluck, startsWith, without} from 'lodash';
 import test from 'tape';
 import picker from '../lib/picker';
 import getMessages from '../lib/messages';
-import {participants} from '../config.json';
+import {participants} from 'getconfig';
 
 const NUMBER_LENGTH = 10;
 const phoneNumberRegex = /^\+1\d{10}$/;
@@ -27,7 +27,7 @@ test('Messages', (t) => {
     t.ok(message.from.match(phoneNumberRegex), 'From is a phone number');
     t.ok(message.to.match(phoneNumberRegex), 'To is a phone number');
 
-    const participant = findWhere(picked, {number: message.to});
+    const participant = findWhere(picked, {name: message.__name});
     t.ok(startsWith(message.body, `Hey ${participant.name},`), 'Body starts with');
 
     const possible = without(pluck(picked, 'name'), participant.name, ...participant.skip);
