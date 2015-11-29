@@ -22,8 +22,7 @@
     "tape": "^4.2.2"
   },
   "keywords": [
-    "santa",
-    "secret",
+    "secret santa",
     "sms",
     "twilio"
   ],
@@ -40,6 +39,6 @@
     "start": "babel-node index.js",
     "production": "babel-node index.js --for-reals",
     "test": "babel-tape-runner test/*.js | tap-min",
-    "validate": "npm ls"
+    "validate": "npm ls >/dev/null"
   }
 }
