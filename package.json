@@ -37,7 +37,7 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
     "start": "babel-node index.js",
-    "production": "babel-node index.js --for-reals",
+    "production": "NODE_ENV=production babel-node index.js --for-reals",
     "test": "babel-tape-runner test/*.js | tap-min",
     "validate": "npm ls >/dev/null"
   }
