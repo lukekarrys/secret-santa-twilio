@@ -35,9 +35,9 @@
   ],
   "private": true,
   "scripts": {
+    "dry": "babel-node index.js",
     "lint": "eslint --ignore-path .gitignore .",
-    "start": "babel-node index.js",
-    "production": "NODE_ENV=production babel-node index.js --for-reals",
+    "send": "babel-node index.js --for-reals",
     "test": "babel-tape-runner test/*.js | tap-min",
     "validate": "npm ls >/dev/null"
   }
