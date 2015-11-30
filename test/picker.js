@@ -21,14 +21,16 @@ times(ITERATIONS).forEach((n) => test(`Iteration ${n}`, (t) => {
   each(picked, (participant) => {
     t.ok(participant.recipient, 'Recipient exists');
     t.ok(participant.name, 'Name exists');
-    t.ok(participant.skip, 'Skip exists');
 
     t.equal(typeof participant.recipient, 'string', 'Recipient is a string');
     t.equal(typeof participant.name, 'string', 'Name is a stirng');
-    t.ok(Array.isArray(participant.skip), 'Skip is an array');
+    t.ok(Array.isArray(participant.skip) || typeof participant.skip === 'undefined', 'Skip is an array');
 
     t.notOk(participant.recipient === participant.name, 'Recipient is not the participant');
-    t.notOk(contains(participant.skip, participant.recipient), 'Recipient is not in skip');
+
+    if (participant.skip) {
+      t.notOk(contains(participant.skip, participant.recipient), 'Recipient is not in skip');
+    }
   });
 
   t.end();

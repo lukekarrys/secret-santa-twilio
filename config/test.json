@@ -1,0 +1,54 @@
+{
+  "participants": [
+    {
+      "name": "Name1",
+      "number": "+15551234567"
+    },
+    {
+      "name": "Name2",
+      "number": "+15551234567",
+      "skip": [
+        "Name1"
+      ]
+    },
+    {
+      "name": "Name3",
+      "number": "+15551234567",
+      "skip": [
+        "Name4"
+      ]
+    },
+    {
+      "name": "Name4",
+      "number": "+15551234567",
+      "skip": [
+        "Name3"
+      ]
+    },
+    {
+      "name": "Name5",
+      "number": "+15551234567",
+      "skip": [
+        "Name6"
+      ]
+    },
+    {
+      "name": "Name6",
+      "number": "+15551234567",
+      "skip": [
+        "Name5"
+      ]
+    },
+    {
+      "name": "Name7",
+      "number": "+15551234567"
+    },
+    {
+      "name": "Name8",
+      "number": "+15551234567",
+      "skip": [
+        "Name7"
+      ]
+    }
+  ]
+}

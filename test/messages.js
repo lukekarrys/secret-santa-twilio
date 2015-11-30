@@ -30,7 +30,8 @@ test('Messages', (t) => {
     const participant = findWhere(picked, {name: message.__name});
     t.ok(startsWith(message.body, `Hey ${participant.name},`), 'Body starts with');
 
-    const possible = without(pluck(picked, 'name'), participant.name, ...participant.skip);
+    const {skip} = participant;
+    const possible = without(pluck(picked, 'name'), participant.name, ...(Array.isArray(skip) ? skip : []));
     const names = new RegExp(` gift for (?:${possible.join('|')})!$`);
     t.ok(message.body.match(names), 'Body ends with');
   });

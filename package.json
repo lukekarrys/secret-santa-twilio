@@ -38,7 +38,7 @@
     "dry": "babel-node index.js",
     "lint": "eslint --ignore-path .gitignore .",
     "send": "babel-node index.js --for-reals",
-    "test": "babel-tape-runner test/*.js | tap-min",
+    "test": "NODE_ENV=test babel-tape-runner test/*.js | tap-min",
     "validate": "npm ls >/dev/null"
   }
 }
