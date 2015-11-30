@@ -11,7 +11,7 @@ Secret Santa over SMS with Twilio.
 
 Here's a sample of what your configuration file should look like:
 
-```json
+```js
 {
   "twilio": {
     "sid": "SID", // Twilio SID
