@@ -1,5 +1,5 @@
 {
-  "name": "twilio-secret-santa",
+  "name": "secret-santa-twilio",
   "description": "Secret Santa over SMS with Twilio.",
   "version": "1.0.0",
   "author": "Luke Karrys <luke@lukekarrys.com>",
