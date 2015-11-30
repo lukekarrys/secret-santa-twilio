@@ -28,3 +28,5 @@ node_modules
 
 # Custom
 config/*.json
+.jshintrc
+.jshintignore
