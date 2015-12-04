@@ -44,7 +44,7 @@ The `development.json` file will be used by default and `production.json` will b
 
 ## Usage
 
-First, clone this and `npm install` all the dependencies.
+First, clone this (or [download the zip](https://github.com/lukekarrys/secret-santa-twilio/zipball/master)) and `npm install` all the dependencies.
 
 Then there are two commands available. As stated above, precede either of these commands with `NODE_ENV=production` to make it use your production config.
 
