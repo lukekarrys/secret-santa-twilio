@@ -4,22 +4,20 @@
   "version": "1.0.0",
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "dependencies": {
-    "async": "^1.5.0",
-    "getconfig": "^2.2.0",
-    "lodash": "^3.10.1",
-    "twilio": "^2.5.2"
+    "async": "^2.0.1",
+    "getconfig": "^3.0.0",
+    "lodash": "^4.14.2",
+    "twilio": "^2.9.1"
   },
   "devDependencies": {
-    "@lukekarrys/eslint-config": "^1.0.30",
-    "babel": "^5.8.34",
-    "babel-eslint": "^4.1.6",
-    "babel-tape-runner": "1.2.0",
-    "eslint": "^1.10.2",
-    "eslint-plugin-classes": "^0.1.1",
-    "eslint-plugin-react": "^3.10.0",
-    "precommit-hook": "^3.0.0",
-    "tap-min": "^1.0.0",
-    "tape": "^4.2.2"
+    "git-validate": "^2.1.4",
+    "standard": "^7.1.2",
+    "tap-dot": "^1.0.5",
+    "tap-min": "^1.1.0",
+    "tape": "^4.6.0"
+  },
+  "engines": {
+    "node": "^6.0.0"
   },
   "keywords": [
     "secret santa",
@@ -35,10 +33,10 @@
   ],
   "private": true,
   "scripts": {
-    "dry": "babel-node index.js",
-    "lint": "eslint --ignore-path .gitignore .",
-    "send": "babel-node index.js --for-reals",
-    "test": "NODE_ENV=test babel-tape-runner test/*.js | tap-min",
+    "dry": "node index.js",
+    "lint": "standard",
+    "send": "node index.js --for-reals",
+    "test": "NODE_ENV=test tape test/*.js | tap-dot",
     "validate": "npm ls >/dev/null"
   }
 }
