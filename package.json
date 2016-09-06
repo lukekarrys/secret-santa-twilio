@@ -36,7 +36,7 @@
     "dry": "node index.js",
     "lint": "standard",
     "send": "node index.js --for-reals",
-    "test": "NODE_ENV=test tape test/*.js",
+    "test": "NODE_ENV=test tape test/*.js | tap-dot",
     "validate": "npm ls >/dev/null"
   }
 }
