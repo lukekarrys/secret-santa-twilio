@@ -5,7 +5,7 @@ const test = require('tape')
 const picker = require('../lib/picker')
 const {participants} = require('getconfig')
 
-const ITERATIONS = 2500
+const ITERATIONS = process.env.CI ? 100 : 2500
 
 times(ITERATIONS).forEach((n) => test(`Iteration ${n}`, (t) => {
   const picked = picker(participants)
