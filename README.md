@@ -2,6 +2,8 @@
 
 [![Build Status](https://img.shields.io/travis/lukekarrys/secret-santa-twilio/master.svg)](https://travis-ci.org/lukekarrys/secret-santa-twilio)
 
+### [Blog Post!](http://lukecod.es/2015/12/02/secret-santa-sms-with-twilio/)
+
 Secret Santa over SMS with Twilio.
 
 **Important: Your Twilio account will need to be properly funded to use this. The cost is $1/mo to get a Twilio number (which can be released after running this) and $0.0075 per message.**
