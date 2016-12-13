@@ -1,11 +1,11 @@
 'use strict'
 
-import twilio from 'twilio'
-import {mapSeries} from 'async'
-import {pluck} from 'lodash'
-import {twilio as twilioConfig, participants, message} from 'getconfig'
-import getMessages from './lib/messages'
-import picker from './lib/picker'
+const twilio = require('twilio')
+const {mapSeries} = require('async')
+const {pluck} = require('lodash')
+const {twilio: twilioConfig, participants, message} = require('getconfig')
+const getMessages = require('./lib/messages')
+const picker = require('./lib/picker')
 
 const sendForReal = process.argv.join(' ').includes('--for-reals')
 const twilioClient = twilio(twilioConfig.sid, twilioConfig.auth)

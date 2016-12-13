@@ -1,4 +1,9 @@
 {
+  "twilio": {
+    "sid": "SID",
+    "auth": "AUTH",
+    "from": "+15551234567"
+  },
   "participants": [
     {
       "name": "Name1",
