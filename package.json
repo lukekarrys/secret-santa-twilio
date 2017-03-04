@@ -6,7 +6,7 @@
   "dependencies": {
     "async": "^2.0.1",
     "getconfig": "^3.0.0",
-    "lodash": "^4.14.2",
+    "lodash": "^4.16.4",
     "twilio": "^2.10.0"
   },
   "devDependencies": {
