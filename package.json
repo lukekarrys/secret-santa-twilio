@@ -7,7 +7,7 @@
     "async": "^2.3.0",
     "getconfig": "^3.0.0",
     "lodash": "^4.14.2",
-    "twilio": "^2.11.1"
+    "twilio": "^3.0.0"
   },
   "devDependencies": {
     "git-validate": "^2.1.4",
