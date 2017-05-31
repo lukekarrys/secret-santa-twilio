@@ -62,6 +62,11 @@ This will output a list of messages that would be sent.
 This will actually send the messages. It will only output the `sid` of each SMS sent so that running the script will not give away the recipient of each participant. If you do need to see the full list of recipients, you can check out your [Twilio messaging logs](https://www.twilio.com/user/account/messaging/logs).
 
 
+## Tests
+
+The test credentials for twilio are encrypted in `.travis.yml`. If you want to run the tests locally, you will need to create a `.env` file with `TEST_SID` and `TEST_AUTH` values.
+
+
 ## LICENSE
 
 MIT
