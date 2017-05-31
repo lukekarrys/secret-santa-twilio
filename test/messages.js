@@ -1,5 +1,7 @@
 'use strict'
 
+require('dotenv').config()
+
 const {each, find, map, startsWith, without} = require('lodash')
 const test = require('tape')
 const picker = require('../lib/picker')

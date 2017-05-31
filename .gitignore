@@ -29,5 +29,4 @@ node_modules
 # Custom
 config/*.json
 !config/test.json
-.jshintrc
-.jshintignore
+.env

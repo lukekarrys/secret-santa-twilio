@@ -7,9 +7,10 @@
     "async": "^2.3.0",
     "getconfig": "^3.0.0",
     "lodash": "^4.14.2",
-    "twilio": "^2.11.1"
+    "twilio": "^3.3.0"
   },
   "devDependencies": {
+    "dotenv": "^4.0.0",
     "git-validate": "^2.1.4",
     "standard": "^10.0.0",
     "tap-dot": "^1.0.5",
