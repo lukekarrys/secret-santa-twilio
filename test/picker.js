@@ -2,14 +2,15 @@
 
 require('dotenv').config()
 
-const {times, each, includes, map, compact, uniq} = require('lodash')
+const {timesSeries} = require('async')
+const {each, includes, map, compact, uniq} = require('lodash')
 const test = require('tape')
 const picker = require('../lib/picker')
 const {participants} = require('getconfig')
 
 const ITERATIONS = process.env.CI ? 100 : 2500
 
-times(ITERATIONS).forEach((n) => test(`Iteration ${n}`, (t) => {
+timesSeries(ITERATIONS, (n, next) => test(`Iteration ${n}`, (t) => {
   const picked = picker(participants)
   const names = compact(map(picked, 'name'))
   const recipients = compact(map(picked, 'recipient'))
@@ -36,4 +37,5 @@ times(ITERATIONS).forEach((n) => test(`Iteration ${n}`, (t) => {
   })
 
   t.end()
+  next()
 }))
