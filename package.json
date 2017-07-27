@@ -7,7 +7,7 @@
     "async": "^2.5.0",
     "getconfig": "^3.1.0",
     "lodash": "^4.17.4",
-    "twilio": "^3.4.0"
+    "twilio": "^4.6.0"
   },
   "devDependencies": {
     "dotenv": "^4.0.0",
