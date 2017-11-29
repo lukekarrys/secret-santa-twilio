@@ -7,7 +7,10 @@ const config = require('getconfig')
 const {startsWith} = require('lodash')
 const send = require('../lib/send')
 
-const twilioConfig = (number) => Object.assign({}, config.twilio, { from: number || config.twilio.from })
+const twilioConfig = (number) => ({
+  ...config.twilio,
+  from: number || config.twilio.from
+})
 
 test('Send fake', (t) => {
   const c = twilioConfig()
