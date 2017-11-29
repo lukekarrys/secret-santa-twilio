@@ -39,3 +39,21 @@ timesSeries(ITERATIONS, (n, next) => test(`Iteration ${n}`, (t) => {
   t.end()
   next()
 }))
+
+test('Impossible participants', (t) => {
+  const impossible = () => picker([
+    {
+      name: 'Name1',
+      number: '+15005550006'
+    },
+    {
+      name: 'Name2',
+      number: '+15005550006',
+      skip: ['Name1']
+    }
+  ])
+
+  t.throws(impossible, /Picking recipients exceeded max run count of \d+\. This probably means your participants config array contains impossible skip constaints\./)
+
+  t.end()
+})
