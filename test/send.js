@@ -50,9 +50,13 @@ test('Send works', (t) => {
     t.notOk(err)
 
     res.forEach((m) => {
-      t.ok(typeof m === 'string')
+      t.ok(typeof m === 'object')
       t.ok(m)
-      t.ok(startsWith(m, 'SM'))
+      t.ok(m.sid)
+      t.ok(m.to)
+      t.equal(Object.keys(m).join(','), 'sid,to')
+      t.ok(startsWith(m.sid, 'SM'))
+      t.ok(startsWith(m.to, '+1'))
     })
 
     t.end()
