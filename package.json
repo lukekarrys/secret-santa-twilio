@@ -5,7 +5,7 @@
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "dependencies": {
     "async": "^2.6.0",
-    "getconfig": "^3.1.0",
+    "getconfig": "^4.0.0",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "twilio": "^4.6.0"
