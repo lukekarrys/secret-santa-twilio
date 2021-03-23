@@ -9,7 +9,6 @@ Secret Santa over SMS with Twilio.
 
 **Important: Your Twilio account will need to be properly funded to use this. The cost is $1/mo to get a Twilio number (which can be released after running this) and $0.0075 per message.**
 
-
 ## Config
 
 Here's a sample of what your configuration file should look like:
@@ -37,13 +36,11 @@ Here's a sample of what your configuration file should look like:
 }
 ```
 
-
 ## Environments
 
 This uses [`getconfig`](https://www.npmjs.com/package/getconfig) to load configuration files based on the environment. So inside the `config/` directory you'll probably want to create a `development.json` file for testing and a `production.json` file for actually sending the SMS.
 
 The `development.json` file will be used by default and `production.json` will be used if you set `NODE_ENV=production` beforing running one of the commands.
-
 
 ## Usage
 
@@ -72,11 +69,9 @@ NODE_ENV=production npm run resend -- \
   --to +15551234567
 ```
 
-
 ## Tests
 
 The test credentials for twilio are encrypted in `.travis.yml`. If you want to run the tests locally, you will need to create a `.env` file with `TEST_SID` and `TEST_AUTH` values.
-
 
 ## LICENSE
 

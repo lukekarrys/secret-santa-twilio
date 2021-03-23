@@ -12,37 +12,27 @@
     {
       "name": "Name2",
       "number": "+15005550006",
-      "skip": [
-        "Name1"
-      ]
+      "skip": ["Name1"]
     },
     {
       "name": "Name3",
       "number": "+15005550006",
-      "skip": [
-        "Name4"
-      ]
+      "skip": ["Name4"]
     },
     {
       "name": "Name4",
       "number": "+15005550006",
-      "skip": [
-        "Name3"
-      ]
+      "skip": ["Name3"]
     },
     {
       "name": "Name5",
       "number": "+15005550006",
-      "skip": [
-        "Name6"
-      ]
+      "skip": ["Name6"]
     },
     {
       "name": "Name6",
       "number": "+15005550006",
-      "skip": [
-        "Name5"
-      ]
+      "skip": ["Name5"]
     },
     {
       "name": "Name7",
@@ -51,9 +41,7 @@
     {
       "name": "Name8",
       "number": "+15005550006",
-      "skip": [
-        "Name7"
-      ]
+      "skip": ["Name7"]
     }
   ]
 }

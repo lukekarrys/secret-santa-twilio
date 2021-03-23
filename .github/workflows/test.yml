@@ -1,0 +1,27 @@
+name: Run tests
+
+on: [push, pull_request]
+
+jobs:
+  data:
+    name: Run tests and linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Install
+        run: |
+          npm install
+
+      - name: Lint, validate, test
+        run: |
+          npm run lint && npm run validate && npm test
+        env:
+          TEST_SID: ${{ secrets.TEST_SID }}
+          TEST_AUTH: ${{ secrets.TEST_AUTH }}

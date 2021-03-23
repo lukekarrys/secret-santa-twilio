@@ -4,18 +4,18 @@
   "version": "1.0.0",
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "dependencies": {
-    "async": "^2.6.0",
-    "getconfig": "^3.1.0",
-    "lodash": "^4.17.4",
-    "minimist": "^1.2.0",
+    "async": "^3.2.0",
+    "getconfig": "^4.5.0",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.5",
     "twilio": "^4.6.0"
   },
   "devDependencies": {
-    "dotenv": "^4.0.0",
-    "git-validate": "^2.2.2",
-    "standard": "^10.0.3",
-    "tap-dot": "^1.0.5",
-    "tape": "^4.8.0"
+    "dotenv": "^8.2.0",
+    "git-validate": "^2.2.4",
+    "prettier": "^2.2.1",
+    "tap-dot": "^2.0.0",
+    "tape": "^5.2.2"
   },
   "engines": {
     "node": "^8.0.0"
@@ -35,7 +35,7 @@
   "private": true,
   "scripts": {
     "dry": "node index.js",
-    "lint": "standard",
+    "lint": "prettier -l .",
     "resend": "node lib/resend --for-reals",
     "send": "node index.js --for-reals",
     "test": "NODE_ENV=test tape test/*.js | tap-dot",
