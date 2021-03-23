@@ -1,8 +1,5 @@
 # secret-santa-twilio
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/lukekarrys/secret-santa-twilio.svg)](https://greenkeeper.io/)
-[![Build Status](https://img.shields.io/travis/lukekarrys/secret-santa-twilio/master.svg)](https://travis-ci.org/lukekarrys/secret-santa-twilio)
-
 ### [Blog Post!](http://lukecod.es/2015/12/02/secret-santa-sms-with-twilio/)
 
 Secret Santa over SMS with Twilio.
