@@ -19,9 +19,9 @@ jobs:
         run: |
           npm install
 
-      - name: Lint, validate, test
+      - name: Lint, test
         run: |
-          npm run lint && npm run validate && npm test
+          npm run lint && npm test
         env:
           TEST_SID: ${{ secrets.TEST_SID }}
           TEST_AUTH: ${{ secrets.TEST_AUTH }}

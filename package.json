@@ -8,10 +8,12 @@
     "getconfig": "^4.5.0",
     "lodash": "^4.17.21",
     "minimist": "^1.2.5",
-    "twilio": "^4.6.0"
+    "twilio": "^3.58.0"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
     "git-validate": "^2.2.4",
     "prettier": "^2.2.1",
     "tap-dot": "^2.0.0",
@@ -29,16 +31,14 @@
   "main": "index.js",
   "pre-commit": [
     "lint",
-    "validate",
     "test"
   ],
   "private": true,
   "scripts": {
     "dry": "node index.js",
-    "lint": "prettier -l .",
+    "lint": "prettier -l . && eslint .",
     "resend": "node lib/resend --for-reals",
     "send": "node index.js --for-reals",
-    "test": "NODE_ENV=test tape test/*.js | tap-dot",
-    "validate": "npm ls >/dev/null"
+    "test": "NODE_ENV=test tape test/*.js | tap-dot"
   }
 }
