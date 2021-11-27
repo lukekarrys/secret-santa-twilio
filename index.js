@@ -1,6 +1,8 @@
 require("dotenv").config()
 
+const path = require("path")
 const { setTimeout } = require("timers/promises")
+const fs = require("fs/promises")
 const minimist = require("minimist")
 const config = require("getconfig")
 
@@ -28,7 +30,10 @@ const main = async (args) => {
     await setTimeout(wait * 1000)
   }
 
-  return secretSanta(args)
+  return {
+    writeFile: !isDev && forReals,
+    results: await secretSanta(args),
+  }
 }
 
 main({
@@ -38,8 +43,20 @@ main({
     boolean: "forReals",
   }),
 })
-  .then((r) => {
+  .then(async ({ results, writeFile }) => {
+    if (writeFile) {
+      try {
+        const resultsFile = path.resolve(
+          process.cwd(),
+          `secret-santa-${new Date().toISOString().replace(/[.:]/g, "_")}.json`
+        )
+        await fs.writeFile(resultsFile, JSON.stringify(results))
+        console.error(`Saved a copy of the results at ${resultsFile}`)
+      } catch {
+        // Do nothing
+      }
+    }
     console.error("Results:")
-    console.log(JSON.stringify(r, null, 2))
+    console.log(JSON.stringify(results, null, 2))
   })
   .catch((e) => console.error("An error occurred", e))

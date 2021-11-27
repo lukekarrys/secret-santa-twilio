@@ -31,3 +31,4 @@ config/*.json
 !config/development.json
 .env
 .nyc_output/
+secret-santa-*.json
