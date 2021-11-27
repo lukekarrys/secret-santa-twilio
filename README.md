@@ -53,11 +53,11 @@ This will output a list of messages that would be sent.
 
 This will actually send the messages. It will only output the `sid` and `to` of each SMS sent so that running the script will not give away the recipient of each participant. If you do need to see the full list of recipients, you can check out your [Twilio messaging logs](https://www.twilio.com/console/phone-numbers/incoming).
 
-### `npm run resend`
+#### Resend a message
 
-If you need to resend a message without seeing who the participant is, you can do that as long as you have the message sid (from the output or you can get it from the [Twilio message logs](https://www.twilio.com/console/phone-numbers/incoming)). You can also optionally resend the message to a different `to` number.
+If you pass in a `--sid` parameter, it will resend that message, optionally to a different number. This is useful if you send all the messages but find out one number was incorrect. You can get the message sid from the output or you can get it from the [Twilio message logs](https://www.twilio.com/console/phone-numbers/incoming).
 
-```
+```sh
 npm run resend -- \
   --sid SMXXXXXX \
   # to is optional, otherwise it will resend to the same number

@@ -1,9 +1,14 @@
-"use strict"
+const minimist = require("minimist")
+const config = require("getconfig")
 
-const { twilio } = require("getconfig")
-const send = require("./lib/send")
-const sendForReal = process.argv.join(" ").includes("--for-reals")
+const main = require("./lib/index")
 
-const log = (err, res) => console.log(err || JSON.stringify(res, null, 2))
-
-send(twilio, sendForReal, log)
+main(
+  ...config,
+  minimist(process.argv.slice(2), {
+    string: ["to", "sid"],
+    boolean: "forReals",
+  })
+)
+  .then((r) => console.log(JSON.stringify(r, null, 2)))
+  .catch((e) => console.error("An error occurred", e))

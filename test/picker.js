@@ -1,17 +1,13 @@
-"use strict"
-
-require("dotenv").config()
-
-const { timesSeries } = require("async")
+const t = require("tap")
 const { each, includes, map, compact, uniq } = require("lodash")
-const test = require("tape")
-const picker = require("../lib/picker")
 const { participants } = require("getconfig")
+
+const picker = require("../lib/picker")
 
 const ITERATIONS = 2500
 
-timesSeries(ITERATIONS, (n, next) =>
-  test(`Iteration ${n}`, (t) => {
+for (let i = 0; i < ITERATIONS; i++) {
+  t.test(`Iteration ${i}`, (t) => {
     const picked = picker(participants)
     const names = compact(map(picked, "name"))
     const recipients = compact(map(picked, "recipient"))
@@ -52,11 +48,10 @@ timesSeries(ITERATIONS, (n, next) =>
     })
 
     t.end()
-    next()
   })
-)
+}
 
-test("Impossible participants", (t) => {
+t.test("Impossible participants", (t) => {
   const impossible = () =>
     picker([
       {

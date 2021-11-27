@@ -4,20 +4,18 @@
   "version": "1.0.0",
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "dependencies": {
-    "async": "^3.2.0",
     "getconfig": "^4.5.0",
     "lodash": "^4.17.21",
     "minimist": "^1.2.5",
-    "twilio": "^3.58.0"
+    "twilio": "^3.71.2"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.1.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
     "git-validate": "^2.2.4",
-    "prettier": "^2.2.1",
-    "tap-dot": "^2.0.0",
-    "tape": "^5.2.2"
+    "prettier": "^2.5.0",
+    "tap": "^15.1.5"
   },
   "keywords": [
     "secret santa",
@@ -34,8 +32,7 @@
   "scripts": {
     "dry": "node index.js",
     "lint": "prettier -l . && eslint .",
-    "resend": "node lib/resend --for-reals",
-    "send": "node index.js --for-reals",
-    "test": "tape test/*.js | tap-dot"
+    "send": "node index.js --forReals",
+    "test": "tap test/*.js"
   }
 }

@@ -30,3 +30,4 @@ node_modules
 config/*.json
 !config/development.json
 .env
+.nyc_output/

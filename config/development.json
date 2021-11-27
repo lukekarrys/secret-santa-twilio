@@ -1,9 +1,9 @@
 {
   "twilio": {
-    "sid": "$TEST_SID",
-    "auth": "$TEST_AUTH",
-    "from": "+15005550006"
+    "sid": "$$TEST_SID",
+    "auth": "$$TEST_AUTH"
   },
+  "from": "+15005550006",
   "participants": [
     {
       "name": "Name1",
