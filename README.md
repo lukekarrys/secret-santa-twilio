@@ -35,32 +35,30 @@ Here's a sample of what your configuration file should look like:
 
 ## Environments
 
-This uses [`getconfig`](https://www.npmjs.com/package/getconfig) to load configuration files based on the environment. So inside the `config/` directory you'll probably want to create a `development.json` file for testing and a `production.json` file for actually sending the SMS.
+This uses [`getconfig`](https://www.npmjs.com/package/getconfig) to load configuration files based on the environment. So inside the `config/` directory you'll want to create a `production.json` file for actually sending the SMS.
 
-The `development.json` file will be used by default and `production.json` will be used if you set `NODE_ENV=production` beforing running one of the commands.
+The `development.json` file included in this repo will be used by default, and you should prefix any command with `NODE_ENV=production` to use your `production.json` config.
 
 ## Usage
 
-**This project requires at least Node v6**
-
 First, clone this (or [download the zip](https://github.com/lukekarrys/secret-santa-twilio/zipball/master)) and `npm install` all the dependencies.
 
-Then there are two commands available. As stated above, precede either of these commands with `NODE_ENV=production` to make it use your production config.
+Here are the available commands (prefix with `NODE_ENV=production` to alter the config used):
 
-### `[NODE_ENV=production] npm run dry`
+### `npm run dry`
 
 This will output a list of messages that would be sent.
 
-### `[NODE_ENV=production] npm run send`
+### `npm run send`
 
 This will actually send the messages. It will only output the `sid` and `to` of each SMS sent so that running the script will not give away the recipient of each participant. If you do need to see the full list of recipients, you can check out your [Twilio messaging logs](https://www.twilio.com/console/phone-numbers/incoming).
 
-### Resending
+### `npm run resend`
 
 If you need to resend a message without seeing who the participant is, you can do that as long as you have the message sid (from the output or you can get it from the [Twilio message logs](https://www.twilio.com/console/phone-numbers/incoming)). You can also optionally resend the message to a different `to` number.
 
 ```
-NODE_ENV=production npm run resend -- \
+npm run resend -- \
   --sid SMXXXXXX \
   # to is optional, otherwise it will resend to the same number
   --to +15551234567
@@ -68,7 +66,7 @@ NODE_ENV=production npm run resend -- \
 
 ## Tests
 
-The test credentials for twilio are encrypted in `.travis.yml`. If you want to run the tests locally, you will need to create a `.env` file with `TEST_SID` and `TEST_AUTH` values.
+If you want to run the tests locally, you will need to create a `.env` file with `TEST_SID` and `TEST_AUTH` values.
 
 ## LICENSE
 

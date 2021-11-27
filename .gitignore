@@ -28,5 +28,5 @@ node_modules
 
 # Custom
 config/*.json
-!config/test.json
+!config/development.json
 .env

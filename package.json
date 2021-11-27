@@ -19,9 +19,6 @@
     "tap-dot": "^2.0.0",
     "tape": "^5.2.2"
   },
-  "engines": {
-    "node": "^8.0.0"
-  },
   "keywords": [
     "secret santa",
     "sms",
@@ -39,6 +36,6 @@
     "lint": "prettier -l . && eslint .",
     "resend": "node lib/resend --for-reals",
     "send": "node index.js --for-reals",
-    "test": "NODE_ENV=test tape test/*.js | tap-dot"
+    "test": "tape test/*.js | tap-dot"
   }
 }
