@@ -24,4 +24,4 @@ jobs:
           npm run lint && npm test
         env:
           TEST_SID: ${{ secrets.TEST_SID }}
-          TEST_AUTH: ${{ secrets.TEST_AUTH }}
+          TEST_TOKEN: ${{ secrets.TEST_AUTH }}

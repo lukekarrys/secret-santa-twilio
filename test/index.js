@@ -5,6 +5,9 @@ const { randomUUID } = require("crypto")
 const config = require("getconfig")
 const { startsWith } = require("lodash")
 
+const phoneNumber = require("../lib/phone-number")
+const randomNumber = () => `+1${Math.random().toString().slice(2, 12)}`
+
 const twilio = (options, mocks) =>
   t.mock(
     "../lib/index",
@@ -19,8 +22,8 @@ t.test("Send fake", async (t) => {
   const res = await twilio({ forReals: false })
 
   res.forEach((m) => {
-    t.equal(m.from, config.from)
-    t.equal(m.to, config.from)
+    t.equal(m.from, phoneNumber(config.from))
+    t.equal(m.to, phoneNumber(config.from))
     t.ok(m.body.includes("Name"))
     t.ok(m.body)
   })
@@ -33,6 +36,23 @@ t.test("Send error", async (t) => {
         from: "+15005550000",
       }),
     { message: /The From phone number \+\d{11} is not .*/, status: 400 }
+  )
+})
+
+t.test("Invalid configs", async (t) => {
+  await t.rejects(
+    () =>
+      twilio({
+        participants: [{ name: "" }],
+      }),
+    { message: /name and number/i }
+  )
+  await t.rejects(
+    () =>
+      twilio({
+        participants: [{ name: "Me", number: randomNumber, skip: ["You"] }],
+      }),
+    { message: /skip must be a valid/i }
   )
 })
 
@@ -77,7 +97,7 @@ t.test("Resend", async (t) => {
 
   const res = await twilio(undefined, mocks)
 
-  const newTo = `+1${Math.random().toString().slice(2, 12)}`
+  const newTo = randomNumber()
   const resend = await twilio(
     {
       sid: res[0].sid,

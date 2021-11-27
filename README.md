@@ -14,9 +14,9 @@ Here's a sample of what your configuration file should look like:
 {
   "twilio": {
     "sid": "SID", // Twilio SID
-    "auth": "AUTH", // Twilio auth token
-    "from": "+15551234567" // Twilio number to send SMS from
+    "token": "TOKEN" // Twilio auth token
   },
+  "from": "+15551234567" // Twilio number to send SMS from
   // Optional message, see lib/messages.js for the default
   "message": "Hey {{name}} buy something for {{recipient}}!",
   "participants": [
@@ -66,7 +66,7 @@ npm run resend -- \
 
 ## Tests
 
-If you want to run the tests locally, you will need to create a `.env` file with `TEST_SID` and `TEST_AUTH` values.
+If you want to run the tests locally, you will need to create a `.env` file with `TEST_SID` and `TEST_TOKEN` values.
 
 ## LICENSE
 

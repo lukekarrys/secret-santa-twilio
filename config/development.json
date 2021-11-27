@@ -1,13 +1,13 @@
 {
   "twilio": {
     "sid": "$$TEST_SID",
-    "auth": "$$TEST_AUTH"
+    "token": "$$TEST_TOKEN"
   },
-  "from": "+15005550006",
+  "from": "500-555-0006",
   "participants": [
     {
       "name": "Name1",
-      "number": "+15005550006"
+      "number": "(500) 555 0006"
     },
     {
       "name": "Name2",
@@ -16,31 +16,31 @@
     },
     {
       "name": "Name3",
-      "number": "+15005550006",
+      "number": "5005550006",
       "skip": ["Name4"]
     },
     {
       "name": "Name4",
-      "number": "+15005550006",
+      "number": "5005550006",
       "skip": ["Name3"]
     },
     {
       "name": "Name5",
-      "number": "+15005550006",
+      "number": "5005550006",
       "skip": ["Name6"]
     },
     {
       "name": "Name6",
-      "number": "+15005550006",
+      "number": "5005550006",
       "skip": ["Name5"]
     },
     {
       "name": "Name7",
-      "number": "+15005550006"
+      "number": "5005550006"
     },
     {
       "name": "Name8",
-      "number": "+15005550006",
+      "number": "5005550006",
       "skip": ["Name7"]
     }
   ]
