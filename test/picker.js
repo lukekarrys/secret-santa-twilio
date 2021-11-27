@@ -70,10 +70,7 @@ test("Impossible participants", (t) => {
       },
     ])
 
-  t.throws(
-    impossible,
-    /Picking recipients exceeded max run count of \d+\. This probably means your participants config array contains impossible skip constaints\./
-  )
+  t.throws(impossible, /Picking recipients failed/)
 
   t.end()
 })
