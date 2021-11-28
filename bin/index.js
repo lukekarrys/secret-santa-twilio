@@ -9,7 +9,7 @@ const phoneNumber = require("../lib/phone-number")
 const secretSanta = require("../lib/index")
 
 const main = async (args) => {
-  const { dry, participants, wait } = args
+  const { dry, participants = [], wait } = args
 
   console.error(`Dry run: ${!!dry}\nParticipants:`)
   console.error(
@@ -17,11 +17,13 @@ const main = async (args) => {
       .map(({ name, number, skip = [] }) =>
         `-- ${name} ${phoneNumber(number)} ${skip.join(",")}`.trim()
       )
-      .join("\n")
+      .join("\n") || "None"
   )
 
   if (!dry && wait) {
-    console.error(`Doing the real thing in ${wait} seconds...`)
+    console.error(
+      `Doing the real thing in ${wait} seconds, Ctrl-C to cancel...`
+    )
     await setTimeout(wait * 1000)
   }
 
@@ -29,6 +31,15 @@ const main = async (args) => {
     writeFile: !dry,
     results: await secretSanta(args),
   }
+}
+
+const readStream = (stream) => {
+  stream.setEncoding("utf8")
+  return new Promise((r) => {
+    let data = ""
+    stream.on("data", (chunk) => (data += chunk))
+    stream.on("end", () => r(data))
+  })
 }
 
 const parseArgs = async () => {
@@ -54,15 +65,38 @@ const parseArgs = async () => {
   })
 
   if (argv.config) {
-    const jsonConfig = path.resolve(process.cwd(), argv.config)
-    argv = {
-      ...argv,
-      ...JSON.parse(await fs.readFile(jsonConfig, "utf-8")),
+    try {
+      const jsonConfig = path.resolve(process.cwd(), argv.config)
+      argv = {
+        ...argv,
+        ...JSON.parse(await fs.readFile(jsonConfig, "utf-8")),
+      }
+    } catch (e) {
+      throw new Error(`Parsing json config: ${e}`)
+    }
+  }
+
+  /* istanbul ignore else */
+  if (!process.stdin.isTTY) {
+    const input = await readStream(process.stdin)
+    if (input) {
+      try {
+        argv = {
+          ...argv,
+          ...JSON.parse(input),
+        }
+      } catch (e) {
+        throw new Error(`Parsing stdin config: ${e}`)
+      }
     }
   }
 
   if (typeof argv.participants === "string") {
-    argv.participants = JSON.parse(argv.participants)
+    try {
+      argv.participants = JSON.parse(argv.participants)
+    } catch (e) {
+      throw new Error(`Parsing participants string: ${e}`)
+    }
   }
 
   return argv
@@ -87,6 +121,7 @@ parseArgs()
     console.log(JSON.stringify(results, null, 2))
   })
   .catch((e) => {
-    console.error("An error occurred", e)
+    console.error("An error occurred:")
+    console.error(e)
     process.exit(1)
   })

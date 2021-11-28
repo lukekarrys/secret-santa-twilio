@@ -57,6 +57,13 @@ t.test("Invalid configs", async (t) => {
       }),
     { message: /skip must be a valid/i }
   )
+  await t.rejects(
+    () =>
+      twilio({
+        participants: null,
+      }),
+    { message: /participants/i }
+  )
 })
 
 t.test("Send works", async (t) => {

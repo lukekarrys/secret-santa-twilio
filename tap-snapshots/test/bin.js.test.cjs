@@ -64,7 +64,60 @@ Participants:
 Results:
 `
 
-exports[`test/bin.js TAP wait > must match snapshot 1`] = `
+exports[`test/bin.js TAP errors bad config > must match snapshot 1`] = `
+An error occurred:
+Error: Parsing json config: SyntaxError: Unexpected token { in JSON at position 1
+    at parseArgs ({CWD}/bin/index.js)
+`
+
+exports[`test/bin.js TAP errors bad input > must match snapshot 1`] = `
+An error occurred:
+Error: Parsing stdin config: SyntaxError: Unexpected token { in JSON at position 1
+    at parseArgs ({CWD}/bin/index.js)
+    at processTicksAndRejections (node:internal/process/task_queues)
+`
+
+exports[`test/bin.js TAP errors bad participants > must match snapshot 1`] = `
+An error occurred:
+Error: Parsing participants string: SyntaxError: Unexpected token { in JSON at position 1
+    at parseArgs ({CWD}/bin/index.js)
+    at processTicksAndRejections (node:internal/process/task_queues)
+`
+
+exports[`test/bin.js TAP errors no config > must match snapshot 1`] = `
+An error occurred:
+Error: Parsing json config: Error: ENOENT: no such file or directory, open '{CWD}/test/tap-testdir/noconfig.json'
+    at parseArgs ({CWD}/bin/index.js)
+`
+
+exports[`test/bin.js TAP errors no participants > must match snapshot 1`] = `
+Dry run: false
+Participants:
+None
+An error occurred:
+Error: Participants must be a non-empty array
+    at validateParticipants ({CWD}/lib/index.js)
+    at module.exports ({CWD}/lib/index.js)
+    at main ({CWD}/bin/index.js)
+    at processTicksAndRejections (node:internal/process/task_queues)
+`
+
+exports[`test/bin.js TAP input types > stderr 1`] = `
+Dry run: false
+Participants:
+-- {NAME} +15005550006
+-- {NAME} +15005550006 {NAME}
+-- {NAME} +15005550006 {NAME}
+-- {NAME} +15005550006 {NAME}
+-- {NAME} +15005550006 {NAME}
+-- {NAME} +15005550006 {NAME}
+-- {NAME} +15005550006
+-- {NAME} +15005550006 {NAME}
+Saved a copy of the results at {CWD}/test/tap-testdir/secret-santa-{DATE}.json
+Results:
+`
+
+exports[`test/bin.js TAP input types > stdout 1`] = `
 [
   {
     "sid": "{SID}",
@@ -99,124 +152,4 @@ exports[`test/bin.js TAP wait > must match snapshot 1`] = `
     "to": "+15005550006"
   }
 ]
-`
-
-exports[`test/bin.js TAP wait > must match snapshot 2`] = `
-Dry run: false
-Participants:
--- {NAME} +15005550006
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006
--- {NAME} +15005550006 {NAME}
-Doing the real thing in 1 seconds...
-Saved a copy of the results at {CWD}/test/tap-testdir-bin-wait/secret-santa-{DATE}.json
-Results:
-`
-
-exports[`test/bin.js TAP with args > must match snapshot 1`] = `
-[
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  }
-]
-`
-
-exports[`test/bin.js TAP with args > must match snapshot 2`] = `
-Dry run: false
-Participants:
--- {NAME} +15005550006
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006
--- {NAME} +15005550006 {NAME}
-Saved a copy of the results at {CWD}/test/tap-testdir-bin-with-args/secret-santa-{DATE}.json
-Results:
-`
-
-exports[`test/bin.js TAP with config > must match snapshot 1`] = `
-[
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  },
-  {
-    "sid": "{SID}",
-    "to": "+15005550006"
-  }
-]
-`
-
-exports[`test/bin.js TAP with config > must match snapshot 2`] = `
-Dry run: false
-Participants:
--- {NAME} +15005550006
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006 {NAME}
--- {NAME} +15005550006
--- {NAME} +15005550006 {NAME}
-Saved a copy of the results at {CWD}/test/tap-testdir-bin-with-config/secret-santa-{DATE}.json
-Results:
 `
