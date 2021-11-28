@@ -3,8 +3,10 @@
   "description": "Secret Santa over SMS with Twilio.",
   "version": "1.0.0",
   "author": "Luke Karrys <luke@lukekarrys.com>",
+  "bin": {
+    "secret-santa-twilio": "./bin.index.js"
+  },
   "dependencies": {
-    "getconfig": "^4.5.0",
     "lodash": "^4.17.21",
     "minimist": "^1.2.5",
     "twilio": "^3.71.2"
@@ -28,11 +30,9 @@
     "lint",
     "test"
   ],
-  "private": true,
   "scripts": {
-    "dry": "node index.js",
     "lint": "prettier -l . && eslint .",
-    "send": "node index.js --forReals",
+    "start": "./bin/index.js",
     "test": "tap test/*.js"
   }
 }

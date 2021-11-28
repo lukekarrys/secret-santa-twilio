@@ -2,10 +2,10 @@ require("dotenv").config()
 
 const t = require("tap")
 const { randomUUID } = require("crypto")
-const config = require("getconfig")
 const { startsWith } = require("lodash")
 
 const phoneNumber = require("../lib/phone-number")
+const fixtures = require("./fixtures")
 const randomNumber = () => `+1${Math.random().toString().slice(2, 12)}`
 
 const twilio = (options, mocks) =>
@@ -13,17 +13,20 @@ const twilio = (options, mocks) =>
     "../lib/index",
     mocks
   )({
-    forReals: true,
-    ...config,
+    dry: false,
+    accountSid: process.env.TEST_SID,
+    accountToken: process.env.TEST_TOKEN,
+    ...fixtures,
     ...options,
   })
 
 t.test("Send fake", async (t) => {
-  const res = await twilio({ forReals: false })
+  const from = randomNumber()
+  const res = await twilio({ from, dry: true })
 
   res.forEach((m) => {
-    t.equal(m.from, phoneNumber(config.from))
-    t.equal(m.to, phoneNumber(config.from))
+    t.equal(m.from, phoneNumber(from))
+    t.equal(m.to, "+15005550006")
     t.ok(m.body.includes("Name"))
     t.ok(m.body)
   })

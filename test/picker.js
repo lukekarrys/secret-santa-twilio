@@ -1,14 +1,14 @@
 const t = require("tap")
 const { each, includes, map, compact, uniq } = require("lodash")
-const { participants } = require("getconfig")
 
 const picker = require("../lib/picker")
+const fixtures = require("./fixtures")
 
 const ITERATIONS = 2500
 
 for (let i = 0; i < ITERATIONS; i++) {
   t.test(`Iteration ${i}`, (t) => {
-    const picked = picker(participants)
+    const picked = picker(fixtures.participants)
     const names = compact(map(picked, "name"))
     const recipients = compact(map(picked, "recipient"))
 

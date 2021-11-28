@@ -1,15 +1,15 @@
 const t = require("tap")
 const { without } = require("lodash")
-const { participants } = require("getconfig")
 
 const picker = require("../lib/picker")
 const getMessages = require("../lib/messages")
+const fixtures = require("./fixtures")
 
 const NUMBER_LENGTH = 10
 const phoneNumberRegex = /^\+1\d{10}$/
 
 t.test("Messages", (t) => {
-  const picked = picker(participants)
+  const picked = picker(fixtures.participants)
   const random = `+1${Math.random()
     .toString()
     .slice(2, 2 + NUMBER_LENGTH)}`
