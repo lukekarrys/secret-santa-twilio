@@ -60,7 +60,7 @@ TWILIO_SID=SID TWILIO_TOKEN=TOKEN npx secret-santa-twilio --sid "SID" --to "+155
 
 ## Tests
 
-If you want to run the tests locally, you will need to create a `.env` file with `TEST_SID` and `TEST_TOKEN` values.
+If you want to run the tests locally, you will need to create a `.env` file with `TWILIO_SID` and `TWILIO_TOKEN` test credential values.
 
 ## LICENSE
 

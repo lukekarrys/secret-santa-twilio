@@ -48,8 +48,8 @@ const parseArgs = async () => {
     default: {
       dry: false,
       wait: 5,
-      accountSid: process.env.TWILIO_TOKEN,
-      accountToken: process.env.TWILIO_SID,
+      accountSid: process.env.TWILIO_SID,
+      accountToken: process.env.TWILIO_TOKEN,
     },
   })
 

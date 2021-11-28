@@ -14,8 +14,8 @@ const twilio = (options, mocks) =>
     mocks
   )({
     dry: false,
-    accountSid: process.env.TEST_SID,
-    accountToken: process.env.TEST_TOKEN,
+    accountSid: process.env.TWILIO_SID,
+    accountToken: process.env.TWILIO_TOKEN,
     ...fixtures,
     ...options,
   })

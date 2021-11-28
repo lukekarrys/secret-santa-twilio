@@ -12,17 +12,20 @@ t.cleanSnapshot = (str) =>
     .replace(/"SM.{32}"/g, `"{SID}"`)
     .replace(new RegExp(process.cwd()), "{CWD}")
 
-const { TEST_SID, TEST_TOKEN } = process.env
+const { TWILIO_SID, TWILIO_TOKEN, ...restEnv } = process.env
 
-const defaultArgs = (options) => ({
-  ...require("./fixtures"),
-  accountSid: TEST_SID,
-  accountToken: TEST_TOKEN,
-  message: "Hey {{name}}, get a gift for {{recipient}}!",
-  wait: 0,
-  dry: false,
-  ...options,
-})
+const defaultArgs = (options) =>
+  Object.entries({
+    ...require("./fixtures"),
+    accountSid: TWILIO_SID,
+    accountToken: TWILIO_TOKEN,
+    message: "Hey {{name}}, get a gift for {{recipient}}!",
+    wait: 0,
+    dry: false,
+    ...options,
+  })
+    .filter(([, v]) => v !== null)
+    .reduce((acc, [k, v]) => ((acc[k] = v), acc), {})
 
 const withConfig = (args) => [
   {
@@ -46,7 +49,7 @@ const run = (t, { testdir, env } = {}, ...args) => {
     cwd: root,
     encoding: "utf-8",
     env: {
-      ...process.env,
+      ...restEnv,
       ...env,
     },
   })
@@ -111,4 +114,15 @@ t.test("wait", async (t) => {
   }
   t.matchSnapshot(res.stdout)
   t.matchSnapshot(res.stderr)
+})
+
+t.test("env vars", async (t) => {
+  const args = withConfig({ accountSid: null, accountToken: null })
+  args[0].env = { TWILIO_SID, TWILIO_TOKEN }
+  const res = run(t, ...args)
+  const data = JSON.parse(res.stdout)
+  for (const d of data) {
+    t.ok(d.sid)
+    t.ok(d.to)
+  }
 })

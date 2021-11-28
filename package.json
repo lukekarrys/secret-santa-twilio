@@ -8,7 +8,6 @@
   },
   "bugs": "https://github.com/lukekarrys/secret-santa-twilio/issues",
   "dependencies": {
-    "lodash": "^4.17.21",
     "minimist": "^1.2.5",
     "twilio": "^3.71.2"
   },
