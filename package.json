@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "bin": {
-    "secret-santa-twilio": "./bin.index.js"
+    "secret-santa-twilio": "./bin/index.js"
   },
   "bugs": "https://github.com/lukekarrys/secret-santa-twilio/issues",
   "dependencies": {
