@@ -13,17 +13,35 @@ Secret Santa over SMS with Twilio.
 ## Usage
 
 ```sh
+# Or put this all in a config file and do either:
+# `cat config.json | npx secret-santa-twilio`
+# `npx secret-santa-twilio --config config.json`
+
 npx secret-santa-twilio \
   --accountSid "ACCOUNT_SID" \
   --accountToken "ACCOUNT_TOKEN" \
   --from "+15005550006" \
-  --message "Hey {{name}}, get a gift for {{recipient}}!" \
-  --participants '[{"name":"Luke","number":"+15005550006"},{name:"Dinah","number":"+15005550006"}]' \
-  # Remove this when you're ready to really send the SMS
+  --message "Hey {{name}}, get a gift for {{recipient}}" \
+  --participants '[{"name":"Alice","number":"500-555-1111"},{"name":"Bob","number":"500-555-2222"}]' \
   --dry
-  # Or put this all in a config file and do either:
-  # `cat config.json | npx secret-santa-twilio`
-  # `npx secret-santa-twilio --config config.json`
+
+> Dry run: true
+> Participants:
+> -- Alice +15005551111
+> -- Bob +15005552222
+> Results:
+> [
+>   {
+>     "from": "+15005550006",
+>     "to": "+15005551111",
+>     "body": "Hey Alice, get a gift for Bob"
+>   },
+>   {
+>     "from": "+15005550006",
+>     "to": "+15005552222",
+>     "body": "Hey Bob, get a gift for Alice"
+>   }
+> ]
 ```
 
 Only the resulting message `sid` and `to` phone number will be output and written to a file, so there's no chance of the person running this program seeing the results.
