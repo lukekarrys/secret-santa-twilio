@@ -15,7 +15,6 @@
     "dotenv": "^10.0.0",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
-    "git-validate": "^2.2.4",
     "prettier": "^2.5.0",
     "tap": "^15.1.5"
   },
@@ -31,10 +30,6 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
-  "pre-commit": [
-    "lint",
-    "test"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/lukekarrys/secret-santa-twilio.git"
