@@ -1,7 +1,7 @@
 {
   "name": "secret-santa-twilio",
   "description": "Secret Santa over SMS with Twilio.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "bin": {
     "secret-santa-twilio": "./bin/index.js"
