@@ -32,14 +32,20 @@ npx secret-santa-twilio \
 > Results:
 > [
 >   {
->     "from": "+15005550006",
->     "to": "+15005551111",
->     "body": "Hey Alice, get a gift for Bob"
+>     "status": "sent",
+>     "message": {
+>       "from": "+15005550006",
+>       "to": "+15005551111",
+>       "body": "Hey Alice, get a gift for Bob"
+>     }
 >   },
 >   {
->     "from": "+15005550006",
->     "to": "+15005552222",
->     "body": "Hey Bob, get a gift for Alice"
+>     "status": "sent",
+>     "message": {
+>       "from": "+15005550006",
+>       "to": "+15005552222",
+>       "body": "Hey Bob, get a gift for Alice"
+>     }
 >   }
 > ]
 ```
