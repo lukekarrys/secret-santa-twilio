@@ -1,13 +1,13 @@
 const t = require("tap")
 
-const picker = require("../lib/picker")
+const getRecipients = require("../lib/recipients")
 const fixtures = require("./fixtures")
 
 const uniq = (arr) => Array.from(new Set(arr))
 
 for (let i = 0; i < 2500; i++) {
   t.test(`Iteration ${i}`, (t) => {
-    const picked = picker(fixtures.participants)
+    const picked = getRecipients(fixtures.participants)
     const names = picked.map(({ name }) => name).filter(Boolean)
     const recipients = picked.map(({ recipient }) => recipient).filter(Boolean)
 
@@ -52,7 +52,7 @@ for (let i = 0; i < 2500; i++) {
 
 t.test("Impossible participants", (t) => {
   const impossible = () =>
-    picker([
+    getRecipients([
       {
         name: "Name1",
         number: "+15005550006",
