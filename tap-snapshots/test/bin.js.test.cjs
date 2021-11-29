@@ -8,44 +8,68 @@
 exports[`test/bin.js TAP dry > must match snapshot 1`] = `
 [
   {
-    "from": "+15005550006",
-    "to": "+15005550006",
-    "body": "Hey {NAME}, get a gift for {NAME}!"
+    "status": "sent",
+    "message": {
+      "from": "+15005550006",
+      "to": "+15005550006",
+      "body": "Hey {NAME}, get a gift for {NAME}!"
+    }
   },
   {
-    "from": "+15005550006",
-    "to": "+15005550006",
-    "body": "Hey {NAME}, get a gift for {NAME}!"
+    "status": "sent",
+    "message": {
+      "from": "+15005550006",
+      "to": "+15005550006",
+      "body": "Hey {NAME}, get a gift for {NAME}!"
+    }
   },
   {
-    "from": "+15005550006",
-    "to": "+15005550006",
-    "body": "Hey {NAME}, get a gift for {NAME}!"
+    "status": "sent",
+    "message": {
+      "from": "+15005550006",
+      "to": "+15005550006",
+      "body": "Hey {NAME}, get a gift for {NAME}!"
+    }
   },
   {
-    "from": "+15005550006",
-    "to": "+15005550006",
-    "body": "Hey {NAME}, get a gift for {NAME}!"
+    "status": "sent",
+    "message": {
+      "from": "+15005550006",
+      "to": "+15005550006",
+      "body": "Hey {NAME}, get a gift for {NAME}!"
+    }
   },
   {
-    "from": "+15005550006",
-    "to": "+15005550006",
-    "body": "Hey {NAME}, get a gift for {NAME}!"
+    "status": "sent",
+    "message": {
+      "from": "+15005550006",
+      "to": "+15005550006",
+      "body": "Hey {NAME}, get a gift for {NAME}!"
+    }
   },
   {
-    "from": "+15005550006",
-    "to": "+15005550006",
-    "body": "Hey {NAME}, get a gift for {NAME}!"
+    "status": "sent",
+    "message": {
+      "from": "+15005550006",
+      "to": "+15005550006",
+      "body": "Hey {NAME}, get a gift for {NAME}!"
+    }
   },
   {
-    "from": "+15005550006",
-    "to": "+15005550006",
-    "body": "Hey {NAME}, get a gift for {NAME}!"
+    "status": "sent",
+    "message": {
+      "from": "+15005550006",
+      "to": "+15005550006",
+      "body": "Hey {NAME}, get a gift for {NAME}!"
+    }
   },
   {
-    "from": "+15005550006",
-    "to": "+15005550006",
-    "body": "Hey {NAME}, get a gift for {NAME}!"
+    "status": "sent",
+    "message": {
+      "from": "+15005550006",
+      "to": "+15005550006",
+      "body": "Hey {NAME}, get a gift for {NAME}!"
+    }
   }
 ]
 `
@@ -120,36 +144,68 @@ Results:
 exports[`test/bin.js TAP input types > stdout 1`] = `
 [
   {
-    "sid": "{SID}",
-    "to": "+15005550006"
+    "status": "sent",
+    "message": {
+      "sid": "{SID}",
+      "from": "+15005550006",
+      "to": "+15005550006"
+    }
   },
   {
-    "sid": "{SID}",
-    "to": "+15005550006"
+    "status": "sent",
+    "message": {
+      "sid": "{SID}",
+      "from": "+15005550006",
+      "to": "+15005550006"
+    }
   },
   {
-    "sid": "{SID}",
-    "to": "+15005550006"
+    "status": "sent",
+    "message": {
+      "sid": "{SID}",
+      "from": "+15005550006",
+      "to": "+15005550006"
+    }
   },
   {
-    "sid": "{SID}",
-    "to": "+15005550006"
+    "status": "sent",
+    "message": {
+      "sid": "{SID}",
+      "from": "+15005550006",
+      "to": "+15005550006"
+    }
   },
   {
-    "sid": "{SID}",
-    "to": "+15005550006"
+    "status": "sent",
+    "message": {
+      "sid": "{SID}",
+      "from": "+15005550006",
+      "to": "+15005550006"
+    }
   },
   {
-    "sid": "{SID}",
-    "to": "+15005550006"
+    "status": "sent",
+    "message": {
+      "sid": "{SID}",
+      "from": "+15005550006",
+      "to": "+15005550006"
+    }
   },
   {
-    "sid": "{SID}",
-    "to": "+15005550006"
+    "status": "sent",
+    "message": {
+      "sid": "{SID}",
+      "from": "+15005550006",
+      "to": "+15005550006"
+    }
   },
   {
-    "sid": "{SID}",
-    "to": "+15005550006"
+    "status": "sent",
+    "message": {
+      "sid": "{SID}",
+      "from": "+15005550006",
+      "to": "+15005550006"
+    }
   }
 ]
 `

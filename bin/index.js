@@ -28,7 +28,7 @@ const main = async (args) => {
   }
 
   return {
-    writeFile: !dry,
+    dry,
     results: await secretSanta(args),
   }
 }
@@ -104,8 +104,8 @@ const parseArgs = async () => {
 
 parseArgs()
   .then(main)
-  .then(async ({ results, writeFile }) => {
-    if (writeFile) {
+  .then(async ({ results, dry }) => {
+    if (!dry) {
       try {
         const resultsFile = path.resolve(
           process.cwd(),
@@ -118,7 +118,30 @@ parseArgs()
       }
     }
     console.error("Results:")
-    console.log(JSON.stringify(results, null, 2))
+    console.log(
+      JSON.stringify(
+        results,
+        (key, value) =>
+          /* istanbul ignore next */
+          !dry && key === "body" ? "[REDACTED]" : value,
+        2
+      )
+    )
+    const errors = results.filter((r) => r.status === "error")
+    /* istanbul ignore if  */
+    if (errors.length) {
+      throw new Error(
+        [
+          "There was an error sending some of the messages which could be",
+          "caused by some incorrect phone numbers. You can try resending all the messages",
+          "or check the output/logs for which messages failed to send and try to send them",
+          "aagain manually, which means you'll probably know the recipient for the",
+          "messages needing to be resent. Sorry!",
+        ].join(" ") +
+          "\n" +
+          errors.join("\n")
+      )
+    }
   })
   .catch((e) => {
     console.error("An error occurred:")

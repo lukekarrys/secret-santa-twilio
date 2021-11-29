@@ -7,6 +7,32 @@ const phoneNumber = require("../lib/phone-number")
 const fixtures = require("./fixtures")
 const randomNumber = () => `+1${Math.random().toString().slice(2, 12)}`
 
+const mockTwilio = (options) => {
+  class MockTwilio {
+    #messages = []
+    constructor(throwError = () => {}) {
+      const messages = (sid) => ({
+        fetch: () => this.#messages.find((m) => m.sid === sid),
+      })
+      messages.create = (m) => {
+        throwError(m)
+        m.sid = randomUUID()
+        this.#messages.push(m)
+        return m
+      }
+      this.messages = messages
+    }
+  }
+  const mockTwilio = new MockTwilio(options)
+  return {
+    twilio: class {
+      constructor() {
+        return mockTwilio
+      }
+    },
+  }
+}
+
 const twilio = (options, mocks) =>
   t.mock(
     "../lib/index",
@@ -24,10 +50,13 @@ t.test("Send fake", async (t) => {
   const res = await twilio({ from, dry: true })
 
   res.forEach((m) => {
-    t.equal(m.from, phoneNumber(from))
-    t.equal(m.to, "+15005550006")
-    t.ok(m.body.includes("Name"))
-    t.ok(m.body)
+    t.match(m, {
+      message: {
+        from: phoneNumber(from),
+        to: "+15005550006",
+        body: "Name",
+      },
+    })
   })
 })
 
@@ -76,60 +105,62 @@ t.test("Send works", async (t) => {
   const res = await twilio()
 
   res.forEach((m) => {
-    t.ok(typeof m === "object")
-    t.ok(m)
-    t.ok(m.sid)
-    t.ok(m.to)
-    t.equal(Object.keys(m).join(","), "sid,to")
-    t.ok(m.sid.startsWith("SM"))
-    t.ok(m.to.startsWith("+1"))
+    t.match(m, {
+      status: "sent",
+      message: {
+        sid: /^SM.+/,
+        to: /^\+1\d+/,
+        from: /^\+1\d+/,
+      },
+    })
   })
 })
 
 t.test("Resend", async (t) => {
-  class MockTwilio {
-    #messages = []
-    constructor() {
-      const messages = (sid) => ({
-        fetch: () => this.#messages.find((m) => m.sid === sid),
-      })
-      messages.create = (m) => {
-        m.sid = randomUUID()
-        this.#messages.push(m)
-        return m
-      }
-      this.messages = messages
-    }
-  }
-
-  const mockTwilio = new MockTwilio()
-  const mocks = {
-    twilio: class {
-      constructor() {
-        return mockTwilio
-      }
-    },
-  }
-
+  const mocks = mockTwilio()
   const res = await twilio(undefined, mocks)
 
   const newTo = randomNumber()
   const resend = await twilio(
     {
-      sid: res[0].sid,
+      sid: res[0].message.sid,
       to: newTo,
     },
     mocks
   )
+
   const resend2 = await twilio(
     {
-      sid: res[1].sid,
+      sid: res[1].message.sid,
     },
     mocks
   )
 
-  t.ok(resend.sid)
-  t.equal(resend.to, newTo)
-  t.ok(resend2.sid)
-  t.equal(resend2.to, "+15005550006")
+  t.ok(resend.message.sid)
+  t.equal(resend.message.to, newTo)
+  t.ok(resend2.message.sid)
+  t.equal(resend2.message.to, "+15005550006")
+})
+
+t.test("One error", async (t) => {
+  const mocks = mockTwilio((m) => {
+    if (m.body.startsWith("Name5 ")) {
+      throw new Error("Message did not send")
+    }
+  })
+
+  const err = (
+    await twilio(
+      {
+        message: "{{name}} {{recipient}}",
+      },
+      mocks
+    )
+  ).find((m) => m.status === "error")
+
+  t.match(err, {
+    status: "error",
+    error: Error,
+    message: { from: String, to: String, body: String },
+  })
 })

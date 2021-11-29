@@ -87,8 +87,16 @@ t.test("input types", async (t) => {
     await t.test(`input ${name}`, async (t) => {
       const res = fn(t)
       const data = res.parsed()
-      t.ok(data.every((d) => d.sid))
-      t.ok(data.every((d) => d.to))
+      for (const m of data) {
+        t.match(m, {
+          status: "sent",
+          message: {
+            sid: /^SM.+/,
+            to: /^\+1\d+/,
+            from: /^\+1\d+/,
+          },
+        })
+      }
       t.strictSame(data, await res.file(), "data and file are the same")
       outputs.push(res)
     })
@@ -104,10 +112,16 @@ t.test("input types", async (t) => {
 
 t.test("dry", async (t) => {
   const res = run(t, ...withFile({ dry: true }))
-  const data = res.parsed()
-  t.ok(data.every((d) => d.from))
-  t.ok(data.every((d) => d.to))
-  t.ok(data.every((d) => d.body))
+  for (const m of res.parsed()) {
+    t.match(m, {
+      status: "sent",
+      message: {
+        body: String,
+        to: /^\+1\d+/,
+        from: /^\+1\d+/,
+      },
+    })
+  }
   t.rejects(() => res.file())
   t.matchSnapshot(res.stdout)
   t.matchSnapshot(res.stderr)
@@ -122,9 +136,16 @@ t.test("twilio env vars", async (t) => {
   const args = withFile({ accountSid: null, accountToken: null })
   args[0].env = { TWILIO_SID, TWILIO_TOKEN }
   const res = run(t, ...args)
-  const data = JSON.parse(res.stdout)
-  t.ok(data.every((d) => d.sid))
-  t.ok(data.every((d) => d.to))
+  for (const m of res.parsed()) {
+    t.match(m, {
+      status: "sent",
+      message: {
+        sid: /^SM.+/,
+        to: /^\+1\d+/,
+        from: /^\+1\d+/,
+      },
+    })
+  }
 })
 
 t.test("errors", async (t) => {
