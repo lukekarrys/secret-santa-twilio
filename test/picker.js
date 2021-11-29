@@ -1,16 +1,15 @@
 const t = require("tap")
-const { each, includes, map, compact, uniq } = require("lodash")
 
 const picker = require("../lib/picker")
 const fixtures = require("./fixtures")
 
-const ITERATIONS = 2500
+const uniq = (arr) => Array.from(new Set(arr))
 
-for (let i = 0; i < ITERATIONS; i++) {
+for (let i = 0; i < 2500; i++) {
   t.test(`Iteration ${i}`, (t) => {
     const picked = picker(fixtures.participants)
-    const names = compact(map(picked, "name"))
-    const recipients = compact(map(picked, "recipient"))
+    const names = picked.map(({ name }) => name).filter(Boolean)
+    const recipients = picked.map(({ recipient }) => recipient).filter(Boolean)
 
     t.ok(names.length, "Names has items")
     t.ok(recipients.length, "Recipients has items")
@@ -22,7 +21,7 @@ for (let i = 0; i < ITERATIONS; i++) {
       "Names and recipients are equal lengths"
     )
 
-    each(picked, (participant) => {
+    picked.forEach((participant) => {
       t.ok(participant.recipient, "Recipient exists")
       t.ok(participant.name, "Name exists")
 
@@ -41,7 +40,7 @@ for (let i = 0; i < ITERATIONS; i++) {
 
       if (participant.skip) {
         t.notOk(
-          includes(participant.skip, participant.recipient),
+          participant.skip.includes(participant.recipient),
           "Recipient is not in skip"
         )
       }

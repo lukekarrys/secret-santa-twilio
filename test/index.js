@@ -2,7 +2,6 @@ require("dotenv").config()
 
 const t = require("tap")
 const { randomUUID } = require("crypto")
-const { startsWith } = require("lodash")
 
 const phoneNumber = require("../lib/phone-number")
 const fixtures = require("./fixtures")
@@ -63,7 +62,14 @@ t.test("Invalid configs", async (t) => {
         participants: null,
       }),
     { message: /participants/i }
-  )
+  ),
+    await t.rejects(
+      () =>
+        twilio({
+          message: "Woo",
+        }),
+      { message: /message must contain/i }
+    )
 })
 
 t.test("Send works", async (t) => {
@@ -75,8 +81,8 @@ t.test("Send works", async (t) => {
     t.ok(m.sid)
     t.ok(m.to)
     t.equal(Object.keys(m).join(","), "sid,to")
-    t.ok(startsWith(m.sid, "SM"))
-    t.ok(startsWith(m.to, "+1"))
+    t.ok(m.sid.startsWith("SM"))
+    t.ok(m.to.startsWith("+1"))
   })
 })
 
