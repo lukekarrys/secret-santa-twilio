@@ -116,6 +116,19 @@ t.test("Send works", async (t) => {
   })
 })
 
+// https://support.twilio.com/hc/en-us/articles/223181348-Alphanumeric-Sender-ID-for-Twilio-Programmable-SMS
+t.test("Send from alphanumeric sender ID", async (t) => {
+  // This is to test that that alphanumeric send ids do not get transformed
+  // to numbers, but we cant test them with our test credentials
+  await t.rejects(
+    () =>
+      twilio({
+        from: "TEST",
+      }),
+    { message: /The From phone number TEST is not .*/, status: 400 }
+  )
+})
+
 t.test("Resend", async (t) => {
   const mocks = mockTwilio()
   const res = await twilio(undefined, mocks)

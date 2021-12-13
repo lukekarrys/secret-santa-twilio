@@ -37,6 +37,6 @@
   "scripts": {
     "lint": "prettier -l . && eslint .",
     "start": "./bin/index.js",
-    "test": "tap test/*.js"
+    "test": "tap test/*.js --reporter terse"
   }
 }
